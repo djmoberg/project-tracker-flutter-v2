@@ -194,6 +194,7 @@ class _MyUserOverviewState extends State<MyUserOverview> {
         ),
         Expanded(
           child: ListView.builder(
+            padding: EdgeInsets.only(bottom: 70.0),
             itemCount: _filteredList(_overview).length,
             itemBuilder: (context, index) {
               var data = _filteredList(_overview)[index];

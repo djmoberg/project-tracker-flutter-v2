@@ -36,8 +36,9 @@ class _MyUserState extends State<MyUser> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: UserOverview(_project, _updateOverview),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+      floatingActionButton: FloatingActionButton.extended(
+        icon: Icon(Icons.add),
+        label: Text("Add Work"),
         onPressed: () async {
           var added = await Navigator.push(context,
               MaterialPageRoute(builder: (context) => Add(_updateOverview)));
