@@ -145,6 +145,22 @@ Future addWork(Map<String, dynamic> work) async {
   return res;
 }
 
+Future editWork(Map<String, dynamic> work) async {
+  RAdd res;
+  http.Response response = await http.put(backend + "/work/edit",
+      headers: {
+        "cookie": await Cookie.getCookie(),
+        "Content-Type": "application/json"
+      },
+      body: json.encode(work));
+  if (response.statusCode == 200) {
+    res = RAdd.fromJson(json.decode(response.body));
+  } else {
+    throw Exception("Failed to edit work");
+  }
+  return res;
+}
+
 Future<bool> userExists(value) async {
   bool res = true;
   http.Response response = await http.get(

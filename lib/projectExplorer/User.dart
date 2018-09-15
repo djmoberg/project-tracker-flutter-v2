@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:project_tracker/projectExplorer/user/Add.dart';
+import 'package:project_tracker/projectExplorer/user/Edit.dart';
 import 'package:project_tracker/projectExplorer/user/UserOverview.dart';
 import 'package:project_tracker/utils/ResponseObjects.dart';
 
@@ -41,7 +41,7 @@ class _MyUserState extends State<MyUser> {
         label: Text("Add Work"),
         onPressed: () async {
           var added = await Navigator.push(context,
-              MaterialPageRoute(builder: (context) => Add(_updateOverview)));
+              MaterialPageRoute(builder: (context) => Edit(_updateOverview)));
           if (added != null && added) {
             Scaffold.of(context)
                 .showSnackBar(SnackBar(content: Text("Work added")));

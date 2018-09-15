@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:project_tracker/api/api.dart';
 import 'package:project_tracker/components/CustomCard.dart';
+import 'package:project_tracker/projectExplorer/user/Edit.dart';
 import 'package:project_tracker/utils/Prefs.dart';
 import 'package:project_tracker/utils/ResponseObjects.dart';
 import 'package:project_tracker/utils/utils.dart';
@@ -205,7 +206,28 @@ class _MyUserOverviewState extends State<MyUserOverview> {
               String hours = getHours(data["workFrom"], data["workTo"]);
               String comment = data["comment"];
               return Dismissible(
-                child: CustomCard(workDate, time, hours, comment),
+                child: GestureDetector(
+                  onTap: () async {
+                    bool edited = await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Edit(
+                                  _updateOverview,
+                                  work: {
+                                    "comment": comment,
+                                    "workDate": workDate,
+                                    "workFrom": data["workFrom"],
+                                    "workTo": data["workTo"],
+                                    "id": id
+                                  },
+                                )));
+                    if (edited != null && edited) {
+                      Scaffold.of(context)
+                          .showSnackBar(SnackBar(content: Text("Work edited")));
+                    }
+                  },
+                  child: CustomCard(workDate, time, hours, comment),
+                ),
                 key: Key(id.toString()),
                 background: Container(
                   color: Colors.red,
