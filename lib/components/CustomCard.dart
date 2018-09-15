@@ -37,6 +37,10 @@ class _MyCustomCardState extends State<MyCustomCard> {
 
   bool _expanded = false;
 
+  _overflown() {
+    return _comment.contains("\n") || _comment.length > 25;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -55,11 +59,13 @@ class _MyCustomCardState extends State<MyCustomCard> {
           // subtitle: Text(_hours + " hours"),
           trailing: IconButton(
             icon: Icon(_expanded ? Icons.expand_less : Icons.expand_more),
-            onPressed: () {
-              setState(() {
-                _expanded = !_expanded;
-              });
-            },
+            onPressed: _overflown()
+                ? () {
+                    setState(() {
+                      _expanded = !_expanded;
+                    });
+                  }
+                : null,
           ),
           // onTap: () {},
         ),
@@ -73,12 +79,12 @@ class _MyCustomCardState extends State<MyCustomCard> {
                   maxLines: _expanded ? null : 1,
                   overflow: TextOverflow.fade,
                 ),
-                _expanded
-                    ? OutlineButton(
-                        child: Text("Edit"),
-                        onPressed: () {},
-                      )
-                    : SizedBox()
+                // _expanded
+                //     ? OutlineButton(
+                //         child: Text("Edit"),
+                //         onPressed: () {},
+                //       )
+                //     : SizedBox()
               ],
             ))
       ],

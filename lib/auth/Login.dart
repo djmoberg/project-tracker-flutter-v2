@@ -4,6 +4,8 @@ import 'package:project_tracker/api/api.dart';
 import 'package:project_tracker/auth/PasswordReset.dart';
 import 'package:project_tracker/auth/RegisterUser.dart';
 
+import 'package:cached_network_image/cached_network_image.dart';
+
 class Login extends StatelessWidget {
   final VoidCallback _onLogin;
 
@@ -74,10 +76,10 @@ class MyCustomFormState extends State<MyCustomForm> {
                 shrinkWrap: true,
                 padding: EdgeInsets.only(left: 24.0, right: 24.0),
                 children: <Widget>[
-                  Image.network(
-                    "https://facelex.com/img/cooltext292638607517631.png",
-                    height: 100.0,
-                  ),
+                  CachedNetworkImage(
+                      placeholder: Center(child: CircularProgressIndicator()),
+                      imageUrl:
+                          "https://facelex.com/img/cooltext292638607517631.png"),
                   TextFormField(
                     validator: (value) {
                       if (value.isEmpty) {
