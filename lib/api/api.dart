@@ -11,8 +11,8 @@ import 'package:project_tracker/utils/ResponseObjects.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-const backend = "https://project-tracker-backend2.herokuapp.com";
-const backend2 = "http://192.168.38.110:3000";
+const backend2 = "https://project-tracker-backend2.herokuapp.com";
+const backend = "http://192.168.38.110:3000";
 
 class Cookie {
   static Future<SharedPreferences> _prefs = SharedPreferences.getInstance();

@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:project_tracker/api/api.dart';
+import 'package:project_tracker/components/MyDrawerHeader.dart';
 import 'package:project_tracker/controlPanel/ChooseProject.dart';
 import 'package:project_tracker/controlPanel/JoinProject.dart';
 import 'package:project_tracker/controlPanel/RegisterProject.dart';
@@ -68,14 +69,7 @@ class _MyControlPanelState extends State<MyControlPanel> {
           child: ListView(
             padding: EdgeInsets.zero,
             children: <Widget>[
-              DrawerHeader(
-                child: Image.network(
-                  "https://facelex.com/img/cooltext292638607517631.png",
-                  height: 100.0,
-                ),
-                decoration: BoxDecoration(
-                    color: Theme.of(context).secondaryHeaderColor),
-              ),
+              MyDrawerHeader(),
               Settings(_onLogout, _update),
             ],
           ),

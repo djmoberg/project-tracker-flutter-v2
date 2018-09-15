@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_tracker/components/MyDrawerHeader.dart';
 
 import 'package:project_tracker/projectExplorer/Admin.dart';
 import 'package:project_tracker/projectExplorer/Images.dart';
@@ -127,14 +128,7 @@ class _MyProjectExplorerState extends State<MyProjectExplorer> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            DrawerHeader(
-              child: Image.network(
-                "https://facelex.com/img/cooltext292638607517631.png",
-                height: 100.0,
-              ),
-              decoration:
-                  BoxDecoration(color: Theme.of(context).secondaryHeaderColor),
-            ),
+            MyDrawerHeader(),
             ListTile(
               selected: _route.toString() ==
                   WorkTimer(() => _updateOverview()).toString(),
