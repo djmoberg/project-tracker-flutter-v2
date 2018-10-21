@@ -37,58 +37,76 @@ class _MyCustomCardState extends State<MyCustomCard> {
 
   bool _expanded = false;
 
-  _overflown() {
-    return _comment.contains("\n") || _comment.length > 25;
-  }
+  onExpandPress(overflown) => overflown
+      ? () {
+          setState(() {
+            _expanded = !_expanded;
+          });
+        }
+      : null;
 
   @override
   Widget build(BuildContext context) {
     return Card(
-        child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        ListTile(
-          leading: Text(_workDate),
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text(_time),
-              Text(_hours + " h"),
-            ],
-          ),
-          // subtitle: Text(_hours + " hours"),
-          trailing: IconButton(
-            icon: Icon(_expanded ? Icons.expand_less : Icons.expand_more),
-            onPressed: _overflown()
-                ? () {
-                    setState(() {
-                      _expanded = !_expanded;
-                    });
-                  }
-                : null,
-          ),
-          // onTap: () {},
-        ),
-        Padding(
-            padding: EdgeInsets.only(left: 16.0, bottom: 16.0, right: 32.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  _comment,
-                  maxLines: _expanded ? null : 1,
-                  overflow: TextOverflow.fade,
+      child: LayoutBuilder(builder: (context, size) {
+        // Build the textspan
+        var span = TextSpan(
+          text: _comment,
+        );
+
+        // Use a textpainter to determine if it will exceed max lines
+        var tp = TextPainter(
+          maxLines: 1,
+          textAlign: TextAlign.left,
+          textDirection: TextDirection.ltr,
+          text: span,
+        );
+
+        // trigger it to layout
+        tp.layout(maxWidth: size.maxWidth - 48);
+
+        // whether the text overflowed or not
+        var overflown = tp.didExceedMaxLines;
+
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            ListTile(
+                leading: Text(_workDate),
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(_time),
+                    Text(_hours + " h"),
+                  ],
                 ),
-                // _expanded
-                //     ? OutlineButton(
-                //         child: Text("Edit"),
-                //         onPressed: () {},
-                //       )
-                //     : SizedBox()
-              ],
-            ))
-      ],
-    ));
+                trailing: overflown
+                    ? IconButton(
+                        icon: Icon(
+                            _expanded ? Icons.expand_less : Icons.expand_more),
+                        onPressed: onExpandPress(overflown),
+                      )
+                    : IconButton(
+                        icon: Icon(null),
+                        onPressed: null,
+                      )),
+            Padding(
+              padding: EdgeInsets.only(left: 16.0, bottom: 16.0, right: 32.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text.rich(
+                    span,
+                    maxLines: _expanded ? null : 1,
+                    overflow: TextOverflow.fade,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        );
+      }),
+    );
   }
 }
 
