@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:project_tracker/api/api.dart';
+import 'package:project_tracker/components/MyFlushbar.dart';
 
 class JoinRequests extends StatelessWidget {
   @override
@@ -35,9 +36,7 @@ class _MyJoinRequestsState extends State<MyJoinRequests> {
     });
     await deleteProjectJoinRequest(userId);
     await _getJoinRequests();
-    Scaffold.of(context).showSnackBar(SnackBar(
-      content: Text(username + " was rejected from the project"),
-    ));
+    infoMsg(username + " was rejected from the project").show(context);
   }
 
   List<Widget> _joinWidgets() {

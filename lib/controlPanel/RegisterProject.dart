@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:project_tracker/api/api.dart';
+import 'package:project_tracker/components/MyFlushbar.dart';
 
 class RegisterProject extends StatelessWidget {
   final VoidCallback _updateProjects;
@@ -90,8 +91,7 @@ class _MyRegisterProjectState extends State<MyRegisterProject> {
                         _nameController.clear();
                         _descriptionController.clear();
                         _updateProjects();
-                        Scaffold.of(context).showSnackBar(
-                            SnackBar(content: Text("Project Registered")));
+                        successMsg("Project Registered").show(context);
                       },
               ),
             ],

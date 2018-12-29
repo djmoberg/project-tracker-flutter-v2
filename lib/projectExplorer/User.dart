@@ -6,6 +6,7 @@ import 'package:project_tracker/components/CustomCard.dart';
 import 'package:project_tracker/utils/Prefs.dart';
 import 'package:project_tracker/utils/ResponseObjects.dart';
 import 'package:project_tracker/utils/utils.dart';
+import 'package:project_tracker/components/MyFlushbar.dart';
 
 class User extends StatelessWidget {
   final VoidCallback _updateOverview;
@@ -222,8 +223,7 @@ class _MyUserState extends State<MyUser> {
                                     },
                                   )));
                       if (edited != null && edited) {
-                        Scaffold.of(context).showSnackBar(
-                            SnackBar(content: Text("Work edited")));
+                        successMsg("Work edited").show(context);
                       }
                     },
                     child: CustomCard(workDate, time, hours, comment),
@@ -249,14 +249,10 @@ class _MyUserState extends State<MyUser> {
                       Prefs().setOverview(res.overview);
                       _updateOverview();
                       if (this.mounted) {
-                        Scaffold.of(context).showSnackBar(SnackBar(
-                          content: Text("Work moved to trash"),
-                          duration: Duration(seconds: 1),
-                        ));
+                        successMsg("Work moved to trash").show(context);
                       }
                     } else {
-                      Scaffold.of(context).showSnackBar(
-                          SnackBar(content: Text("Something went wrong")));
+                      errorMsg().show(context);
                     }
                   },
                 );
@@ -272,8 +268,7 @@ class _MyUserState extends State<MyUser> {
           var added = await Navigator.push(context,
               MaterialPageRoute(builder: (context) => Edit(_updateOverview)));
           if (added != null && added) {
-            Scaffold.of(context)
-                .showSnackBar(SnackBar(content: Text("Work added")));
+            successMsg("Work added").show(context);
             setState(() {
               _overview = Prefs().overview;
             });

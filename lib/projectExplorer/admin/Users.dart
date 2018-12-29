@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:project_tracker/api/api.dart';
 import 'package:project_tracker/projectExplorer/admin/UserOptionDialog.dart';
 import 'package:project_tracker/utils/Prefs.dart';
+import 'package:project_tracker/components/MyFlushbar.dart';
 
 class Users extends StatelessWidget {
   @override
@@ -42,9 +43,7 @@ class _MyUsersState extends State<MyUsers> {
     });
     await makeAdmin({"username": username});
     await _getUsers();
-    Scaffold.of(context).showSnackBar(SnackBar(
-      content: Text(username + " is now an admin of the project"),
-    ));
+    successMsg(username + " is now an admin of the project").show(context);
   }
 
   _removeUser(username) async {
@@ -53,9 +52,7 @@ class _MyUsersState extends State<MyUsers> {
     });
     await removeUser(username);
     await _getUsers();
-    Scaffold.of(context).showSnackBar(SnackBar(
-      content: Text(username + " was removed from the project"),
-    ));
+    successMsg(username + " was removed from the project").show(context);
   }
 
   List<Widget> _userWidgets() {
@@ -112,9 +109,7 @@ class _MyUsersState extends State<MyUsers> {
     });
     await deleteProjectJoinRequest(userId);
     await _getJoinRequests();
-    Scaffold.of(context).showSnackBar(SnackBar(
-      content: Text(username + " was rejected from the project"),
-    ));
+    infoMsg(username + " was rejected from the project").show(context);
   }
 
   _addUser(username, userId) async {
@@ -125,9 +120,7 @@ class _MyUsersState extends State<MyUsers> {
     await deleteProjectJoinRequest(userId);
     await _getJoinRequests();
     await _getUsers();
-    Scaffold.of(context).showSnackBar(SnackBar(
-      content: Text(username + " was added to the project"),
-    ));
+    successMsg(username + " was added to the project").show(context);
   }
 
   List<Widget> _joinWidgets() {

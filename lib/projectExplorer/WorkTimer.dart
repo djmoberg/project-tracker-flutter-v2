@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:project_tracker/api/api.dart';
 import 'package:project_tracker/projectExplorer/workTimer/AddDialog.dart';
 import 'package:project_tracker/utils/utils.dart';
+import 'package:project_tracker/components/MyFlushbar.dart';
 
 class WorkTimer extends StatelessWidget {
   final VoidCallback _updateOverview;
@@ -148,12 +149,8 @@ class _MyWorkTimerState extends State<MyWorkTimer> {
                           String hours = getHours(formatTimeRounded(_startTime),
                               formatTimeRounded(stopTime));
                           if (hours == "0.0") {
-                            Scaffold.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                    "You must work for at least 15 minutes!"),
-                              ),
-                            );
+                            infoMsg("You must work for at least 15 minutes!")
+                                .show(context);
                           } else {
                             bool workAdded = await Navigator.push(context,
                                 MaterialPageRoute(builder: (context) {
@@ -161,8 +158,7 @@ class _MyWorkTimerState extends State<MyWorkTimer> {
                                   _startTime, stopTime, _updateOverview);
                             }));
                             if (workAdded != null && workAdded) {
-                              Scaffold.of(context).showSnackBar(
-                                  SnackBar(content: Text("Work added")));
+                              successMsg("Work added").show(context);
                               _timer.cancel();
                               setState(() {
                                 _startTime = null;

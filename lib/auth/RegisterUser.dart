@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:project_tracker/api/api.dart';
+import 'package:project_tracker/components/MyFlushbar.dart';
 
 import 'package:validate/validate.dart';
 
@@ -154,8 +155,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                             setState(() {
                               _loading = true;
                             });
-                            Scaffold.of(context).showSnackBar(
-                                SnackBar(content: Text('Registering...')));
+                            infoMsg("Registering...").show(context);
 
                             try {
                               await registerUser({
@@ -165,8 +165,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                               });
                               Navigator.pop(context);
                             } catch (e) {
-                              Scaffold.of(context).showSnackBar(SnackBar(
-                                  content: Text('Something went wrong')));
+                              errorMsg().show(context);
                             }
                             setState(() {
                               _loading = false;

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:project_tracker/api/api.dart';
 import 'package:project_tracker/auth/PasswordReset.dart';
 import 'package:project_tracker/auth/RegisterUser.dart';
+import 'package:project_tracker/components/MyFlushbar.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
 
@@ -47,15 +48,13 @@ class MyCustomFormState extends State<MyCustomForm> {
       setState(() {
         _loading = true;
       });
-      Scaffold.of(context)
-          .showSnackBar(SnackBar(content: Text("Logging in...")));
+      infoMsg("Logging in...").show(context);
       _formKey.currentState.save();
       try {
         await login(_username, _password);
         _onLogin();
       } catch (e) {
-        Scaffold.of(context)
-            .showSnackBar(SnackBar(content: Text("Something went wrong")));
+        errorMsg().show(context);
         setState(() {
           _loading = false;
         });

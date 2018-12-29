@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:project_tracker/settings/ChangePassword.dart';
 import 'package:project_tracker/settings/DefaultView.dart';
 import 'package:project_tracker/utils/Prefs.dart';
+import 'package:project_tracker/components/MyFlushbar.dart';
 
 class Settings extends StatelessWidget {
   final VoidCallback _onLogout;
@@ -54,9 +55,7 @@ class Settings extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => ChangePassword()));
             if (res != null && res) {
               Navigator.pop(context);
-              Scaffold.of(context).showSnackBar(SnackBar(
-                content: Text("Password Changed"),
-              ));
+              successMsg("Password Changed").show(context);
             }
           },
         ),

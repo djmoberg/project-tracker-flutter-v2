@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:project_tracker/api/api.dart';
 import 'package:project_tracker/utils/Prefs.dart';
 import 'package:project_tracker/utils/ResponseObjects.dart';
+import 'package:project_tracker/components/MyFlushbar.dart';
 
 class ProjectSettings extends StatelessWidget {
   final Project _project;
@@ -110,8 +111,7 @@ class _MyProjectSettingsState extends State<MyProjectSettings> {
                               description: _description,
                               overview: _liveProject.overview);
                         });
-                        Scaffold.of(context).showSnackBar(
-                            SnackBar(content: Text("Project Updated")));
+                        successMsg("Project Updated").show(context);
                       },
               ),
             ],
