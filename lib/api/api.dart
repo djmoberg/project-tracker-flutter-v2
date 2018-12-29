@@ -12,7 +12,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 const backend2 = "https://project-tracker-backend2.herokuapp.com";
-const backend = "http://192.168.38.110:3000";
+const backend = "http://192.168.38.116:3000";
 
 class Cookie {
   static Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
@@ -90,6 +90,8 @@ Future<Project> getProject(int id) async {
   if (response.statusCode == 200) {
     project = Project.fromJson(id, json.decode(response.body));
     print(project.id);
+  } else if (response.statusCode == 403) {
+    await Prefs().setSelectedProject(null);
   } else {
     throw Exception("Failed to load projects");
   }

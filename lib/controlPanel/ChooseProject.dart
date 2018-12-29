@@ -47,19 +47,25 @@ class _MyChooseProjectState extends State<MyChooseProject> {
       loading = true;
     });
     Project project = await getProject(id);
-    await Prefs().setSelectedProject(id);
-    Prefs().setProjectName(project.name);
-    setState(() {
-      loading = false;
-    });
-    bool remove =
-        await Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return ProjectExplorer(project, _onLogout, _update);
-    }));
-    Prefs().setSelectedProject(null);
-    if (remove != null && remove) {
+    if (project != null) {
+      await Prefs().setSelectedProject(id);
+      Prefs().setProjectName(project.name);
       setState(() {
-        _liveProjects.removeWhere((pro) => pro["id"] == id);
+        loading = false;
+      });
+      bool remove =
+          await Navigator.push(context, MaterialPageRoute(builder: (context) {
+        return ProjectExplorer(project, _onLogout, _update);
+      }));
+      Prefs().setSelectedProject(null);
+      if (remove != null && remove) {
+        setState(() {
+          _liveProjects.removeWhere((pro) => pro["id"] == id);
+        });
+      }
+    } else {
+      setState(() {
+        loading = false;
       });
     }
   }
