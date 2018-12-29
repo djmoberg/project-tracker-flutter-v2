@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:project_tracker/api/api.dart';
+import 'package:project_tracker/components/MySpinner.dart';
 
 class ChangePassword extends StatelessWidget {
   @override
@@ -39,7 +40,7 @@ class _MyChangePasswordState extends State<MyChangePassword> {
       ),
       body: _loading
           ? Center(
-              child: CircularProgressIndicator(),
+              child: loaderIndicator(),
             )
           : ListView(
               padding: EdgeInsets.all(16.0),

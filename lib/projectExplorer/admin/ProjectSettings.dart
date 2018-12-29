@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:project_tracker/api/api.dart';
+import 'package:project_tracker/components/MySpinner.dart';
 import 'package:project_tracker/utils/Prefs.dart';
 import 'package:project_tracker/utils/ResponseObjects.dart';
 import 'package:project_tracker/components/MyFlushbar.dart';
@@ -61,7 +62,7 @@ class _MyProjectSettingsState extends State<MyProjectSettings> {
   Widget build(BuildContext context) {
     return _loading
         ? Center(
-            child: CircularProgressIndicator(),
+            child: loaderIndicator(),
           )
         : Column(
             children: <Widget>[

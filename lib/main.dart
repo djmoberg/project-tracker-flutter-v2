@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:project_tracker/api/api.dart';
 import 'package:project_tracker/auth/Login.dart';
+import 'package:project_tracker/components/MySpinner.dart';
 import 'package:project_tracker/controlPanel/ControlPanel.dart';
 import 'package:project_tracker/utils/Prefs.dart';
 
@@ -67,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
       theme: Prefs().theme == "dark" ? ThemeData.dark() : ThemeData.light(),
       home: isLoggedIn == null || loading
           ? Scaffold(
-              body: Center(child: CircularProgressIndicator()),
+              body: Center(child: loaderIndicator()),
             )
           : isLoggedIn
               ? ControlPanel(() => _onLogout(), () => _update())

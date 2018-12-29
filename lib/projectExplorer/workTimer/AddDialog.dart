@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:project_tracker/api/api.dart';
+import 'package:project_tracker/components/MySpinner.dart';
 import 'package:project_tracker/utils/Prefs.dart';
 import 'package:project_tracker/utils/ResponseObjects.dart';
 import 'package:project_tracker/utils/utils.dart';
@@ -47,7 +48,7 @@ class _MyAddDialogState extends State<MyAddDialog> {
         title: Text("Clock Out"),
       ),
       body: _loading
-          ? Center(child: CircularProgressIndicator())
+          ? Center(child: loaderIndicator())
           : ListView(
               padding: EdgeInsets.all(16.0),
               children: <Widget>[

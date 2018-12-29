@@ -6,6 +6,7 @@ import 'package:project_tracker/auth/RegisterUser.dart';
 import 'package:project_tracker/components/MyFlushbar.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:project_tracker/components/MySpinner.dart';
 
 class Login extends StatelessWidget {
   final VoidCallback _onLogin;
@@ -66,7 +67,7 @@ class MyCustomFormState extends State<MyCustomForm> {
   Widget build(BuildContext context) {
     return _loading
         ? Center(
-            child: CircularProgressIndicator(),
+            child: loaderIndicator(),
           )
         : Form(
             key: _formKey,
@@ -76,7 +77,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                 padding: EdgeInsets.only(left: 24.0, right: 24.0),
                 children: <Widget>[
                   CachedNetworkImage(
-                      placeholder: Center(child: CircularProgressIndicator()),
+                      placeholder: Center(child: imageLoaderIndicator(context)),
                       imageUrl:
                           "https://facelex.com/img/cooltext292638607517631.png"),
                   TextFormField(

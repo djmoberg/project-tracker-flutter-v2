@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:project_tracker/api/api.dart';
+import 'package:project_tracker/components/MySpinner.dart';
 import 'package:project_tracker/utils/Prefs.dart';
 import 'package:project_tracker/utils/ResponseObjects.dart';
 import 'package:project_tracker/utils/utils.dart';
@@ -207,7 +208,7 @@ class _MyEditState extends State<MyEdit> {
       body: ListView(
         padding: EdgeInsets.all(16.0),
         children: <Widget>[
-          _loading ? Center(child: CircularProgressIndicator()) : SizedBox(),
+          _loading ? Center(child: loaderIndicator()) : SizedBox(),
           ListTile(
             title: Text(
               "Date:",

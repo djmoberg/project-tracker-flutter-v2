@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'package:project_tracker/api/api.dart';
+import 'package:project_tracker/components/MySpinner.dart';
 import 'package:project_tracker/utils/Prefs.dart';
 
 class NewImage2 extends StatelessWidget {
@@ -63,7 +64,7 @@ class _MyNewImage2State extends State<MyNewImage2> {
       ),
       body: Center(
         child: _loading
-            ? CircularProgressIndicator()
+            ? loaderIndicator()
             : _image == null ? Text('No image selected.') : Image.file(_image),
       ),
       bottomSheet: Row(

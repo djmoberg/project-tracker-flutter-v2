@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'package:project_tracker/api/api.dart';
+import 'package:project_tracker/components/MySpinner.dart';
 import 'package:project_tracker/projectExplorer/ProjectExplorer.dart';
 import 'package:project_tracker/utils/Prefs.dart';
 import 'package:project_tracker/utils/ResponseObjects.dart';
@@ -83,7 +84,7 @@ class _MyChooseProjectState extends State<MyChooseProject> {
   @override
   Widget build(BuildContext context) {
     return loading
-        ? Center(child: CircularProgressIndicator())
+        ? Center(child: loaderIndicator())
         : ListView.builder(
             padding: EdgeInsets.all(16.0),
             itemCount: _liveProjects.length,

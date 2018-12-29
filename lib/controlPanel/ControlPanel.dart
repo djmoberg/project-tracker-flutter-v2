@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:project_tracker/api/api.dart';
 import 'package:project_tracker/components/MyDrawerHeader.dart';
+import 'package:project_tracker/components/MySpinner.dart';
 import 'package:project_tracker/controlPanel/ChooseProject.dart';
 import 'package:project_tracker/controlPanel/JoinProject.dart';
 import 'package:project_tracker/controlPanel/RegisterProject.dart';
@@ -93,7 +94,7 @@ class _MyControlPanelState extends State<MyControlPanel> {
         body: TabBarView(
           children: <Widget>[
             _loading
-                ? Center(child: CircularProgressIndicator())
+                ? Center(child: loaderIndicator())
                 : ChooseProject(_projects, _onLogout, _update),
             RegisterProject(() => _getProjects()),
             JoinProject(_projects),

@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:pinch_zoom_image/pinch_zoom_image.dart';
 
 import 'package:project_tracker/api/api.dart';
+import 'package:project_tracker/components/MySpinner.dart';
 import 'package:project_tracker/projectExplorer/images/NewImage2.dart';
 
 class Images extends StatelessWidget {
@@ -45,7 +46,7 @@ class _MyImagesState extends State<MyImages> {
             padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: PinchZoomImage(
               image: CachedNetworkImage(
-                placeholder: Center(child: CircularProgressIndicator()),
+                placeholder: Center(child: imageLoaderIndicator(context)),
                 errorWidget: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[

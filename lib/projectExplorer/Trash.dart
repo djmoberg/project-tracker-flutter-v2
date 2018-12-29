@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:project_tracker/api/api.dart';
+import 'package:project_tracker/components/MySpinner.dart';
 import 'package:project_tracker/utils/Prefs.dart';
 import 'package:project_tracker/utils/ResponseObjects.dart';
 import 'package:project_tracker/utils/utils.dart';
@@ -61,7 +62,7 @@ class _MyTrashState extends State<MyTrash> {
   Widget build(BuildContext context) {
     return _loading
         ? Center(
-            child: CircularProgressIndicator(),
+            child: loaderIndicator(),
           )
         : _list.length == 0
             ? Center(
@@ -72,7 +73,7 @@ class _MyTrashState extends State<MyTrash> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        CircularProgressIndicator(),
+                        loaderIndicator(),
                         Text("Restoring"),
                       ],
                     ),

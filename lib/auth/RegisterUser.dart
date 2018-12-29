@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:project_tracker/api/api.dart';
 import 'package:project_tracker/components/MyFlushbar.dart';
+import 'package:project_tracker/components/MySpinner.dart';
 
 import 'package:validate/validate.dart';
 
@@ -59,7 +60,7 @@ class MyCustomFormState extends State<MyCustomForm> {
   Widget build(BuildContext context) {
     return _loading
         ? Center(
-            child: CircularProgressIndicator(),
+            child: loaderIndicator(),
           )
         : Form(
             key: _formKey,

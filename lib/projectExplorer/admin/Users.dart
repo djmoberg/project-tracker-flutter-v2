@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:project_tracker/api/api.dart';
+import 'package:project_tracker/components/MySpinner.dart';
 import 'package:project_tracker/projectExplorer/admin/UserOptionDialog.dart';
 import 'package:project_tracker/utils/Prefs.dart';
 import 'package:project_tracker/components/MyFlushbar.dart';
@@ -170,7 +171,7 @@ class _MyUsersState extends State<MyUsers> {
           style: Theme.of(context).textTheme.subhead,
         ),
         _loading
-            ? Center(child: CircularProgressIndicator())
+            ? Center(child: loaderIndicator())
             : _users.length == 0
                 ? Text("No users")
                 : Column(
@@ -182,7 +183,7 @@ class _MyUsersState extends State<MyUsers> {
           style: Theme.of(context).textTheme.subhead,
         ),
         _loadingRequests
-            ? Center(child: CircularProgressIndicator())
+            ? Center(child: loaderIndicator())
             : _requests.length == 0
                 ? Text("No requests")
                 : Column(

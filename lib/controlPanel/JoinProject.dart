@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'package:project_tracker/api/api.dart';
+import 'package:project_tracker/components/MySpinner.dart';
 import 'package:project_tracker/utils/ResponseObjects.dart';
 
 class JoinProject extends StatelessWidget {
@@ -129,7 +130,7 @@ class _MyJoinProjectState extends State<MyJoinProject> {
                     SizedBox(
                       height: 16.0,
                     ),
-                    CircularProgressIndicator()
+                    loaderIndicator()
                   ],
                 )
               : _filteredResults().length == 0 && _searchValue != ""
@@ -173,7 +174,7 @@ class _MyJoinProjectState extends State<MyJoinProject> {
                   style: Theme.of(context).textTheme.headline,
                 ),
           _loadingPending
-              ? CircularProgressIndicator()
+              ? loaderIndicator()
               : _pendingJoinRequest.length == 0
                   ? SizedBox()
                   : Expanded(

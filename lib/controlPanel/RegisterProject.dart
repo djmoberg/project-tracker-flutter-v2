@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:project_tracker/api/api.dart';
 import 'package:project_tracker/components/MyFlushbar.dart';
+import 'package:project_tracker/components/MySpinner.dart';
 
 class RegisterProject extends StatelessWidget {
   final VoidCallback _updateProjects;
@@ -43,7 +44,7 @@ class _MyRegisterProjectState extends State<MyRegisterProject> {
   Widget build(BuildContext context) {
     return _loading
         ? Center(
-            child: CircularProgressIndicator(),
+            child: loaderIndicator(),
           )
         : ListView(
             padding: EdgeInsets.all(16.0),

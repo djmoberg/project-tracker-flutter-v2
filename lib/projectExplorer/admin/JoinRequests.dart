@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:project_tracker/api/api.dart';
 import 'package:project_tracker/components/MyFlushbar.dart';
+import 'package:project_tracker/components/MySpinner.dart';
 
 class JoinRequests extends StatelessWidget {
   @override
@@ -77,7 +78,7 @@ class _MyJoinRequestsState extends State<MyJoinRequests> {
   @override
   Widget build(BuildContext context) {
     return _loading
-        ? Center(child: CircularProgressIndicator())
+        ? Center(child: loaderIndicator())
         : _requests.length == 0
             ? Text("No requests")
             : Column(

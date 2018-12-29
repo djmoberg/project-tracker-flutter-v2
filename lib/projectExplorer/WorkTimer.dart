@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'package:project_tracker/api/api.dart';
+import 'package:project_tracker/components/MySpinner.dart';
 import 'package:project_tracker/projectExplorer/workTimer/AddDialog.dart';
 import 'package:project_tracker/utils/utils.dart';
 import 'package:project_tracker/components/MyFlushbar.dart';
@@ -86,7 +87,7 @@ class _MyWorkTimerState extends State<MyWorkTimer> {
   Widget build(BuildContext context) {
     return Center(
       child: _startTime == null
-          ? CircularProgressIndicator()
+          ? loaderIndicator()
           : _startTime == 0
               ? Column(
                   mainAxisAlignment: MainAxisAlignment.center,
