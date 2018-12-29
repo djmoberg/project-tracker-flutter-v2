@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:pinch_zoom_image/pinch_zoom_image.dart';
 
 import 'package:project_tracker/api/api.dart';
 import 'package:project_tracker/projectExplorer/images/NewImage2.dart';
@@ -37,14 +38,25 @@ class _MyImagesState extends State<MyImages> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView.builder(
-        padding: EdgeInsets.symmetric(horizontal: 16.0),
+        padding: EdgeInsets.only(left: 16.0, right: 16.0, bottom: 70.0),
         itemCount: _imgLinks.length,
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: CachedNetworkImage(
-              placeholder: Center(child: CircularProgressIndicator()),
-              imageUrl: _imgLinks[index]["image_url"],
+            child: PinchZoomImage(
+              image: CachedNetworkImage(
+                placeholder: Center(child: CircularProgressIndicator()),
+                errorWidget: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Icon(Icons.error, color: Colors.red),
+                    SizedBox(width: 16.0),
+                    Text("Image could not be loaded"),
+                  ],
+                ),
+                imageUrl: _imgLinks[index]["image_url"],
+              ),
+              hideStatusBarWhileZooming: true,
             ),
             // child: Image.network(_imgLinks[index]["image_url"]),
           );

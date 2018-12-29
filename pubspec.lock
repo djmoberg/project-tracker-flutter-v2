@@ -21,7 +21,7 @@ packages:
       name: cached_network_image
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.5.0"
+    version: "0.5.1"
   charcode:
     dependency: transitive
     description:
@@ -68,7 +68,7 @@ packages:
       name: flutter_cache_manager
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.0"
+    version: "0.2.0+1"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -123,6 +123,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.4.1"
+  pinch_zoom_image:
+    dependency: "direct main"
+    description:
+      name: pinch_zoom_image
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.5"
   quiver:
     dependency: transitive
     description:
